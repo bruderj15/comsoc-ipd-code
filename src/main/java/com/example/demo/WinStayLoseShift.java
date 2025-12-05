@@ -11,7 +11,7 @@ public class WinStayLoseShift implements Strategy {
     }
 
     @Override
-    public Choice move(Choice myLastChoice, Choice oppenentLastChoice) {
-        return myLastChoice == oppenentLastChoice ? Choice.COOPERATE : Choice.DEFECT;
+    public Choice move(Choice myLastChoice, Choice opponentLastChoice) {
+        return myLastChoice == opponentLastChoice ? Choice.COOPERATE : Choice.DEFECT;
     }
 }

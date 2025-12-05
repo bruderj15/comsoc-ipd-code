@@ -11,7 +11,7 @@ public class AllCooperate implements Strategy {
     }
 
     @Override
-    public Choice move(Choice myLastChoice, Choice oppenentLastChoice) {
+    public Choice move(Choice myLastChoice, Choice opponentLastChoice) {
         return Choice.COOPERATE;
     }
 }

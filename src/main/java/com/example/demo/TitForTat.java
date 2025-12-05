@@ -11,7 +11,7 @@ public class TitForTat implements Strategy {
     }
 
     @Override
-    public Choice move(Choice myLastChoice, Choice oppenentLastChoice) {
-        return oppenentLastChoice;
+    public Choice move(Choice myLastChoice, Choice opponentLastChoice) {
+        return opponentLastChoice;
     }
 }
