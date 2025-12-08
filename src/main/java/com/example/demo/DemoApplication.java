@@ -12,7 +12,7 @@ import java.util.*;
 @SpringBootApplication
 public class DemoApplication implements ApplicationRunner {
 
-    private static final long N = 1_000_000;
+    private static final long N = 10_000_000;
 
     @Autowired
     private List<Strategy> strategies;
