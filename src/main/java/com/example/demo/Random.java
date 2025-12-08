@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class Random implements Strategy {
     @Override
     public Choice initial() {
-        return null;
+        return Math.random() < 0.5 ? Choice.COOPERATE : Choice.DEFECT;
     }
 
     @Override
