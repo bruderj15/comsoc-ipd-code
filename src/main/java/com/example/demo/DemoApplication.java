@@ -29,7 +29,11 @@ public class DemoApplication implements ApplicationRunner {
         strategies.forEach(s -> totalScore.put(s.getClass(), 0L));
         strategies.forEach(s -> totalWins.put(s.getClass(), 0L));
 
-        // --- Run all pairings ---
+        System.out.println();
+        System.out.println("\u001B[36m╔═════════════════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[36m║           Iterated Prisoner's Dilemma (Round Results)           ║\u001B[0m");
+        System.out.println("\u001B[36m╚═════════════════════════════════════════════════════════════════╝\u001B[0m");
+
         for (int i = 0; i < strategies.size(); i++) {
             for (int j = 0; j < i; j++) {
                 final Strategy player1 = strategies.get(i);
@@ -47,27 +51,53 @@ public class DemoApplication implements ApplicationRunner {
                     totalWins.computeIfPresent(player2.getClass(), (k, v) -> v + 1);
                 }
 
-                System.out.printf(
-                        "'%s' vs '%s': (%d, %d)%n",
-                        player1.getClass().getSimpleName(),
-                        player2.getClass().getSimpleName(),
-                        gameResult.player1Score(),
-                        gameResult.player2Score()
-                );
+                printRoundResult(player1, player2, gameResult.player1Score(), gameResult.player2Score());
             }
         }
 
-        printVisualization(totalScore, totalWins);
+        printGameResult(totalScore, totalWins);
     }
 
-    private void printVisualization(
+    private void printRoundResult(Strategy p1, Strategy p2, long s1, long s2) {
+        String name1 = p1.getClass().getSimpleName();
+        String name2 = p2.getClass().getSimpleName();
+
+        // Winner/loser/tie colors
+        String win  = "\u001B[32m";  // green
+        String lose = "\u001B[31m";  // red
+        String tie  = "\u001B[33m";  // yellow
+        String reset = "\u001B[0m";
+
+        String color1 =
+                (s1 > s2) ? win :
+                        (s2 > s1) ? lose : tie;
+
+        String color2 =
+                (s2 > s1) ? win :
+                        (s1 > s2) ? lose : tie;
+
+        // Alignment BEFORE coloring
+        String n1 = String.format("%-18s", name1);
+        String n2 = String.format("%-18s", name2);
+
+        System.out.printf(
+                "%s%s%s vs %s%s%s → (%7d , %7d)%n",
+                color1, n1, reset,
+                color2, n2, reset,
+                s1, s2
+        );
+    }
+
+
+
+    private void printGameResult(
             HashMap<Class<? extends Strategy>, Long> totalScore,
             HashMap<Class<? extends Strategy>, Long> totalWins
     ) {
         System.out.println();
-        System.out.println("\u001B[36m╔══════════════════════════════════════════════════╗\u001B[0m");
-        System.out.println("\u001B[36m║           Iterated Prisoner's Dilemma            ║\u001B[0m");
-        System.out.println("\u001B[36m╚══════════════════════════════════════════════════╝\u001B[0m");
+        System.out.println("\u001B[36m╔═════════════════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[36m║           Iterated Prisoner's Dilemma (Total Results)           ║\u001B[0m");
+        System.out.println("\u001B[36m╚═════════════════════════════════════════════════════════════════╝\u001B[0m");
 
         System.out.println();
 
