@@ -45,11 +45,11 @@ public class Game {
                 if (player1Choice == Choice.COOPERATE && player2Choice == Choice.COOPERATE) {
                     return new GameResult(3, 3);
                 } else if (player1Choice == Choice.COOPERATE && player2Choice == Choice.DEFECT) {
-                    return new GameResult(1, 5);
+                    return new GameResult(0, 5);
                 } else if (player1Choice == Choice.DEFECT && player2Choice == Choice.COOPERATE) {
-                    return new GameResult(5, 1);
+                    return new GameResult(5, 0);
                 } else {
-                    return new GameResult(0, 0);
+                    return new GameResult(1, 1);
                 }
             };
         }
