@@ -5,5 +5,12 @@ package com.example.demo;
  */
 public enum Choice {
     COOPERATE,
-    DEFECT
+    DEFECT;
+
+    public Choice negate() {
+        return switch (this) {
+            case COOPERATE -> Choice.DEFECT;
+            case DEFECT -> Choice.COOPERATE;
+        };
+    }
 }
