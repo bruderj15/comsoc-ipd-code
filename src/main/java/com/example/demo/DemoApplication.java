@@ -23,6 +23,9 @@ public class DemoApplication implements ApplicationRunner {
 
     @Override
     public void run(@Nonnull ApplicationArguments args) {
+        final Game.GameConfiguration gameConfiguration = Game.GameConfiguration.defaultGameConfiguration();
+        printGameConfiguration(gameConfiguration);
+
         final HashMap<Class<? extends Strategy>, Long> totalScore = new HashMap<>();
         final HashMap<Class<? extends Strategy>, Long> totalWins = new HashMap<>();
 
@@ -39,7 +42,7 @@ public class DemoApplication implements ApplicationRunner {
                 final Strategy player1 = strategies.get(i);
                 final Strategy player2 = strategies.get(j);
 
-                final Game game = new Game(player1, player2, N, Game.GameConfiguration.defaultGameConfiguration());
+                final Game game = new Game(player1, player2, N, gameConfiguration);
                 final Game.GameResult gameResult = game.play();
 
                 totalScore.computeIfPresent(player1.getClass(), (k, v) -> v + gameResult.player1Score());
@@ -58,14 +61,25 @@ public class DemoApplication implements ApplicationRunner {
         printGameResult(totalScore, totalWins);
     }
 
+    private void printGameConfiguration(Game.GameConfiguration cfg) {
+        System.out.println("\n\u001B[36m╔══════════════════════════════════════╗");
+        System.out.println("║       Iterated PD Configuration      ║");
+        System.out.println("╠══════════════════════════════════════╣");
+        System.out.printf("║   T (Temptation)      ║       5      ║%n");
+        System.out.printf("║   R (Reward)          ║       3      ║%n");
+        System.out.printf("║   P (Punishment)      ║       1      ║%n");
+        System.out.printf("║   S (Sucker’s Payoff) ║       0      ║%n");
+        System.out.println("╚══════════════════════════════════════╝\u001B[0m\n");
+    }
+
     private void printRoundResult(Strategy p1, Strategy p2, long s1, long s2) {
         String name1 = p1.getClass().getSimpleName();
         String name2 = p2.getClass().getSimpleName();
 
         // Winner/loser/tie colors
-        String win  = "\u001B[32m";  // green
+        String win = "\u001B[32m";  // green
         String lose = "\u001B[31m";  // red
-        String tie  = "\u001B[33m";  // yellow
+        String tie = "\u001B[33m";  // yellow
         String reset = "\u001B[0m";
 
         String color1 =
@@ -90,7 +104,6 @@ public class DemoApplication implements ApplicationRunner {
                 avg1, avg2
         );
     }
-
 
 
     private void printGameResult(
