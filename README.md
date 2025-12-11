@@ -2,6 +2,22 @@
 
 Demo code for lecture on the iterative prisoners dilemma in advanced seminar "Computational Social Choice"
 
+## Execute
+
+We will run the application by using the supplied [Maven-Wrapper](https://mvnrepository.com/artifact/org.apache.maven.wrapper/maven-wrapper-parent).
+
+### Unix
+
+```bash
+./mvnw spring-boot:run
+```
+
+### Windows PowerShell
+
+```bash
+.\mvnw spring-boot:run
+```
+
 ## Contribute
 
 You can contribute by implementing strategies for the iterated prisoners' dilemma.
