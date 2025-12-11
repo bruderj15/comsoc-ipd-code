@@ -24,7 +24,7 @@ public class DemoApplication implements ApplicationRunner {
     @Override
     public void run(@Nonnull ApplicationArguments args) {
         final Game.GameConfiguration gameConfiguration = Game.GameConfiguration.defaultGameConfiguration();
-        printGameConfiguration(gameConfiguration);
+        printGameConfiguration();
 
         final HashMap<Class<? extends Strategy>, Long> totalScore = new HashMap<>();
         final HashMap<Class<? extends Strategy>, Long> totalWins = new HashMap<>();
@@ -61,7 +61,7 @@ public class DemoApplication implements ApplicationRunner {
         printGameResult(totalScore, totalWins);
     }
 
-    private void printGameConfiguration(Game.GameConfiguration cfg) {
+    private void printGameConfiguration() {
         System.out.println("\n\u001B[36m╔══════════════════════════════════════╗");
         System.out.println("║       Iterated PD Configuration      ║");
         System.out.println("╠══════════════════════════════════════╣");
