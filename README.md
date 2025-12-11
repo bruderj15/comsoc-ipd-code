@@ -4,6 +4,7 @@ Demo code for lecture on the iterative prisoners dilemma in advanced seminar "Co
 
 ## Execute
 
+Java 17+ is required to be in path.
 We will run the application by using the supplied [Maven-Wrapper](https://mvnrepository.com/artifact/org.apache.maven.wrapper/maven-wrapper-parent).
 
 ### Unix
