@@ -80,11 +80,14 @@ public class DemoApplication implements ApplicationRunner {
         String n1 = String.format("%-18s", name1);
         String n2 = String.format("%-18s", name2);
 
+        double avg1 = (double) s1 / N;
+        double avg2 = (double) s2 / N;
+
         System.out.printf(
-                "%s%s%s vs %s%s%s → (%7d , %7d)%n",
+                "%s%s%s vs %s%s%s → (%7f , %7f)%n",
                 color1, n1, reset,
                 color2, n2, reset,
-                s1, s2
+                avg1, avg2
         );
     }
 
